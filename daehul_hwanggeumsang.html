@@ -80,6 +80,9 @@ nav.scrolled{box-shadow:0 2px 20px rgba(30,58,47,0.10);}
 .form-field label{display:block;font-size:11px;font-weight:600;color:var(--text-mid);margin-bottom:4px;}
 .form-field input,.form-field textarea,.form-field select{width:100%;padding:9px 12px;border:1.5px solid var(--cream-dark);border-radius:8px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text-dark);background:white;transition:border-color 0.2s;outline:none;}
 .form-field input:focus,.form-field textarea:focus{border-color:var(--green-light);}
+.form-field input.phone-error{border-color:#DC2626 !important;}
+.phone-hint{font-size:11px;color:#DC2626;margin-top:3px;display:none;}
+.phone-hint.show{display:block;}
 .form-field textarea{resize:vertical;min-height:52px;}
 .same-addr-btn{font-size:11px;color:var(--orange-gold);background:var(--orange-pale);border:1px solid rgba(212,117,10,0.2);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;margin-bottom:8px;}
 .order-total{background:var(--green-deep);border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
@@ -270,7 +273,7 @@ footer{background:var(--green-deep);padding:60px 5vw 0;color:rgba(255,255,255,0.
         <div class="form-grid">
           <div class="form-grid form-grid-2">
             <div class="form-field"><label>성명 *</label><input type="text" id="senderName" placeholder="홍길동" required></div>
-            <div class="form-field"><label>연락처 *</label><input type="tel" id="senderPhone" placeholder="010-0000-0000" required oninput="formatPhone(this)"></div>
+            <div class="form-field"><label>연락처 *</label><input type="tel" id="senderPhone" placeholder="010-0000-0000" required oninput="formatPhone(this)"><span class="phone-hint">형식이 올바르지 않습니다 (예: 010-1234-5678)</span></div>
           </div>
           <div class="form-field"><label>주소</label><input type="text" id="senderAddr" value="제주특별자치도 조천읍 대흘2리 306번지"></div>
         </div>
@@ -281,9 +284,9 @@ footer{background:var(--green-deep);padding:60px 5vw 0;color:rgba(255,255,255,0.
         <div class="form-grid">
           <div class="form-grid form-grid-2">
             <div class="form-field"><label>성명 *</label><input type="text" id="receiverName" placeholder="김철수" required></div>
-            <div class="form-field"><label>연락처 *</label><input type="tel" id="receiverPhone" placeholder="010-0000-0000" required oninput="formatPhone(this)"></div>
+            <div class="form-field"><label>연락처 *</label><input type="tel" id="receiverPhone" placeholder="010-0000-0000" required oninput="formatPhone(this)"><span class="phone-hint">형식이 올바르지 않습니다 (예: 010-1234-5678)</span></div>
           </div>
-          <div class="form-field"><label>기타 연락처</label><input type="tel" id="receiverPhone2" placeholder="없으면 비워두세요" oninput="formatPhone(this)"></div>
+          <div class="form-field"><label>기타 연락처</label><input type="tel" id="receiverPhone2" placeholder="없으면 비워두세요" oninput="formatPhone(this)"><span class="phone-hint">형식이 올바르지 않습니다 (예: 010-1234-5678)</span></div>
           <div class="form-field"><label>주소 *</label><input type="text" id="receiverAddr" placeholder="서울시 강남구 테헤란로 123" required></div>
           <div class="form-field"><label>상세주소 (동/호수)</label><input type="text" id="receiverAddrDetail" placeholder="○○아파트 101동 1001호"></div>
         </div>
@@ -467,11 +470,22 @@ function updateTotal() {
   document.getElementById('totalDetail').textContent = m[selectedName] + ' × ' + qty + '박스';
 }
 
+const PHONE_REGEX = /^010-\d{3,4}-\d{4}$/;
+
 function formatPhone(input) {
   let v = input.value.replace(/\D/g, '');
   if (v.length <= 3)       input.value = v;
   else if (v.length <= 7)  input.value = v.slice(0,3) + '-' + v.slice(3);
   else                     input.value = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+
+  // 실시간 유효성 표시 (값이 있을 때만)
+  const hint = input.nextElementSibling;
+  if (hint && hint.classList.contains('phone-hint')) {
+    const filled = input.value.length > 0;
+    const valid  = PHONE_REGEX.test(input.value);
+    input.classList.toggle('phone-error', filled && !valid);
+    hint.classList.toggle('show', filled && !valid);
+  }
 }
 
 function copySender() {
@@ -482,6 +496,29 @@ function copySender() {
 
 async function handleOrder(e) {
   e.preventDefault();
+
+  // 전화번호 형식 검사
+  const senderPhoneEl   = document.getElementById('senderPhone');
+  const receiverPhoneEl = document.getElementById('receiverPhone');
+  const receiverPhone2El = document.getElementById('receiverPhone2');
+  const invalidPhones = [];
+  if (!PHONE_REGEX.test(senderPhoneEl.value))   invalidPhones.push('보내는 분 연락처');
+  if (!PHONE_REGEX.test(receiverPhoneEl.value))  invalidPhones.push('받는 분 연락처');
+  if (receiverPhone2El.value && !PHONE_REGEX.test(receiverPhone2El.value)) invalidPhones.push('받는 분 기타 연락처');
+  if (invalidPhones.length > 0) {
+    // 오류 필드에 포커스 및 스타일 강조
+    [senderPhoneEl, receiverPhoneEl, receiverPhone2El].forEach(el => formatPhone(el));
+    const first = invalidPhones[0] === '보내는 분 연락처' ? senderPhoneEl
+                : invalidPhones[0] === '받는 분 연락처'   ? receiverPhoneEl
+                : receiverPhone2El;
+    first.focus();
+    const errEl = document.getElementById('errorMsg');
+    errEl.textContent = `전화번호 형식이 올바르지 않습니다 — ${invalidPhones.join(', ')} (예: 010-1234-5678)`;
+    errEl.classList.add('show');
+    setTimeout(() => errEl.classList.remove('show'), 5000);
+    return;
+  }
+
   const detail  = document.getElementById('receiverAddrDetail').value;
   const fullAddr = document.getElementById('receiverAddr').value + (detail ? ' ' + detail : '');
   const now = new Date();

@@ -12,7 +12,7 @@
 // ================================================================
 
 var CONFIG = {
-  SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID',  // ← 스프레드시트 ID 입력
+  SPREADSHEET_ID: '1O-Io6v3_DlKDDGU5KIm59jlD_wmpmxJ8DNK-FU4omj8',  // ← 스프레드시트 ID 입력
   ADMIN_PASSWORD: 'daheul2025',            // ← 관리자 비밀번호 (변경 가능)
   ORDERS_SHEET:   '주문내역',
   CONTACTS_SHEET: '문의내역',
