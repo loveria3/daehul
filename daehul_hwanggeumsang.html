@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정성가득 대흘귤집 · 노지황금향</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FAF6EE;--cream-dark:#F0E9D8;--green-deep:#1E3A2F;--green-mid:#2D5A3D;--green-light:#4A7C59;--orange-gold:#D4750A;--orange-light:#F4A130;--orange-pale:#FDEFD8;--text-dark:#1A1A1A;--text-mid:#4A4A4A;--text-light:#7A7A7A;--white:#FFFFFF;--shadow:0 4px 40px rgba(30,58,47,0.10);--shadow-lg:0 16px 80px rgba(30,58,47,0.16);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,246,238,0.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(30,58,47,0.08);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 2px 20px rgba(30,58,47,0.10);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-icon{width:36px;height:36px;background:var(--green-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.nav-logo-text{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--green-deep);line-height:1.3;}
+.nav-logo-text span{display:block;font-size:10px;font-weight:300;color:var(--text-light);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--text-mid);letter-spacing:0.5px;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--orange-gold);transform:scaleX(0);transition:transform 0.25s;}
+.nav-links a:hover{color:var(--green-deep);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:var(--green-deep)!important;color:var(--white)!important;padding:8px 20px;border-radius:24px;font-size:13px!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:var(--green-mid)!important;}
+#home{min-height:100vh;padding-top:68px;display:grid;grid-template-columns:1fr 1fr;}
+.hero-left{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:60px 56px;min-height:calc(100vh - 68px);}
+.hero-bg-img{position:absolute;inset:0;}
+.hero-bg-img img{width:100%;height:100%;object-fit:cover;opacity:0.5;}
+.hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,46,35,0.97) 0%,rgba(20,46,35,0.55) 50%,rgba(20,46,35,0.25) 100%);}
+.pamphlet-card{position:relative;z-index:2;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:32px;backdrop-filter:blur(10px);}
+.pamphlet-season-tag{display:inline-flex;align-items:center;gap:6px;background:var(--orange-gold);color:white;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+.pamphlet-title{font-family:'Noto Serif KR',serif;font-size:38px;font-weight:700;color:white;line-height:1.25;margin-bottom:8px;}
+.pamphlet-title em{color:var(--orange-light);font-style:normal;}
+.pamphlet-subtitle{font-size:14px;color:rgba(255,255,255,0.55);letter-spacing:2px;margin-bottom:28px;font-weight:300;}
+.pamphlet-products{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.pamphlet-product-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,255,255,0.07);border-radius:10px;border:1px solid rgba(255,255,255,0.08);transition:background 0.2s;}
+.pamphlet-product-item:hover{background:rgba(255,255,255,0.13);}
+.product-label{display:flex;align-items:center;gap:8px;}
+.product-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:0.5px;}
+.badge-premium{background:var(--orange-gold);color:white;}
+.badge-mid{background:rgba(255,255,255,0.2);color:white;}
+.product-name{font-size:13px;color:rgba(255,255,255,0.85);font-weight:500;}
+.product-weight{font-size:11px;color:rgba(255,255,255,0.4);}
+.product-price{font-family:'Playfair Display',serif;font-size:18px;color:var(--orange-light);font-weight:700;}
+.product-price-sub{font-size:10px;color:rgba(255,255,255,0.35);}
+.pamphlet-info{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end;}
+.pamphlet-contact-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.pamphlet-contact{font-size:18px;color:white;font-weight:600;letter-spacing:1px;}
+.pamphlet-bank{font-size:11px;color:rgba(255,255,255,0.4);margin-top:3px;}
+.pamphlet-harvest{font-family:'Playfair Display',serif;font-size:13px;color:var(--orange-light);font-style:italic;}
+.hero-right{background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:60px 56px;overflow-y:auto;}
+.order-header{margin-bottom:28px;}
+.order-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange-gold);margin-bottom:10px;}
+.order-title{font-family:'Noto Serif KR',serif;font-size:28px;font-weight:700;color:var(--green-deep);line-height:1.3;margin-bottom:8px;}
+.order-desc{font-size:13px;color:var(--text-light);line-height:1.7;}
+.product-selector{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+.product-selector-label{font-size:12px;font-weight:700;color:var(--text-mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.product-card{border:1.5px solid var(--cream-dark);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;background:white;}
+.product-card:hover{border-color:var(--green-light);}
+.product-card.selected{border-color:var(--green-deep);background:rgba(30,58,47,0.03);}
+.product-card-left{display:flex;align-items:center;gap:12px;}
+.product-card-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--cream-dark);transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.product-card.selected .product-card-radio{border-color:var(--green-deep);background:var(--green-deep);}
+.product-card.selected .product-card-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:white;display:block;}
+.product-card-name{font-size:14px;font-weight:600;color:var(--text-dark);}
+.product-card-desc{font-size:11px;color:var(--text-light);margin-top:2px;}
+.product-card-price{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--green-deep);}
+.qty-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.qty-label{font-size:12px;font-weight:700;color:var(--text-mid);letter-spacing:1px;text-transform:uppercase;}
+.qty-control{display:flex;align-items:center;border:1.5px solid var(--cream-dark);border-radius:10px;overflow:hidden;background:white;}
+.qty-btn{width:38px;height:38px;border:none;background:none;cursor:pointer;font-size:18px;color:var(--green-deep);transition:background 0.15s;font-weight:300;display:flex;align-items:center;justify-content:center;}
+.qty-btn:hover{background:var(--cream-dark);}
+.qty-display{width:48px;height:38px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--text-dark);border-left:1px solid var(--cream-dark);border-right:1px solid var(--cream-dark);}
+.form-section{margin-bottom:16px;}
+.form-section-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-mid);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--cream-dark);}
+.form-grid{display:grid;gap:8px;}
+.form-grid-2{grid-template-columns:1fr 1fr;}
+.form-field label{display:block;font-size:11px;font-weight:600;color:var(--text-mid);margin-bottom:4px;}
+.form-field input,.form-field textarea,.form-field select{width:100%;padding:9px 12px;border:1.5px solid var(--cream-dark);border-radius:8px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text-dark);background:white;transition:border-color 0.2s;outline:none;}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--green-light);}
+.form-field textarea{resize:vertical;min-height:52px;}
+.same-addr-btn{font-size:11px;color:var(--orange-gold);background:var(--orange-pale);border:1px solid rgba(212,117,10,0.2);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;margin-bottom:8px;}
+.order-total{background:var(--green-deep);border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.order-total-label{font-size:12px;color:rgba(255,255,255,0.6);}
+.order-total-amount{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--orange-light);}
+.order-total-detail{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;}
+.submit-btn{width:100%;padding:15px;background:var(--orange-gold);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;letter-spacing:1px;transition:all 0.2s;}
+.submit-btn:hover{background:#BF6800;transform:translateY(-1px);box-shadow:0 6px 24px rgba(212,117,10,0.3);}
+.submit-btn:disabled{background:#aaa;cursor:not-allowed;transform:none;box-shadow:none;}
+.order-notice{font-size:11px;color:var(--text-light);text-align:center;margin-top:10px;line-height:1.6;}
+.success-msg{display:none;background:#E8F5E9;border:1px solid #A5D6A7;border-radius:12px;padding:16px;text-align:center;margin-top:12px;}
+.success-msg.show{display:block;}
+.success-msg h3{color:#2E7D32;font-size:15px;margin-bottom:5px;}
+.success-msg p{color:#388E3C;font-size:12px;}
+.error-msg{display:none;background:#FFF3F3;border:1px solid #FFCDD2;border-radius:12px;padding:12px;text-align:center;margin-top:10px;font-size:12px;color:#C62828;}
+.error-msg.show{display:block;}
+.photo-strip{display:grid;grid-template-columns:repeat(4,1fr);height:240px;overflow:hidden;}
+.photo-strip-item{overflow:hidden;position:relative;}
+.photo-strip-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.photo-strip-item:hover img{transform:scale(1.08);}
+/* 사진 없을 때 플레이스홀더 */
+.photo-strip-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;}
+section{padding:96px 5vw;}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--orange-gold);margin-bottom:14px;}
+.section-title{font-family:'Noto Serif KR',serif;font-size:40px;font-weight:700;color:var(--green-deep);line-height:1.25;margin-bottom:16px;}
+.section-desc{font-size:15px;color:var(--text-mid);line-height:1.8;max-width:560px;}
+#orchard{background:var(--white);}
+.orchard-intro{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-bottom:80px;}
+.orchard-intro-image{border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:80px;}
+.orchard-intro-image img{width:100%;height:100%;object-fit:cover;}
+.quality-points{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+.quality-item{display:flex;gap:12px;align-items:flex-start;}
+.quality-icon{width:36px;height:36px;background:var(--orange-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.quality-title{font-size:14px;font-weight:700;color:var(--green-deep);margin-bottom:3px;}
+.quality-desc{font-size:12px;color:var(--text-light);line-height:1.6;}
+.seasons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.season-card{border-radius:16px;overflow:hidden;background:var(--cream);transition:transform 0.3s,box-shadow 0.3s;}
+.season-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.season-image{height:200px;position:relative;overflow:hidden;}
+.season-image img{width:100%;height:100%;object-fit:cover;}
+.season-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;}
+.season-season-badge{position:absolute;top:14px;left:14px;z-index:2;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;padding:4px 10px;border-radius:10px;}
+.badge-spring{background:#6BAE6F;}
+.badge-summer{background:#3A7D44;}
+.badge-autumn{background:#C97A2B;}
+.badge-winter{background:#2D5A8E;}
+.season-content{padding:18px;}
+.season-month{font-size:11px;color:var(--text-light);letter-spacing:2px;margin-bottom:6px;}
+.season-title{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--green-deep);margin-bottom:8px;}
+.season-desc{font-size:12px;color:var(--text-mid);line-height:1.7;}
+.grower-card{background:var(--green-deep);border-radius:24px;padding:48px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;margin-top:80px;position:relative;overflow:hidden;}
+.grower-card::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:rgba(244,161,48,0.07);}
+.grower-photo{width:180px;height:180px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.2);flex-shrink:0;background:var(--green-mid);display:flex;align-items:center;justify-content:center;font-size:64px;}
+.grower-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.grower-quote{font-family:'Playfair Display',serif;font-size:20px;color:white;line-height:1.7;font-style:italic;margin-bottom:20px;}
+.grower-name{font-size:14px;color:var(--orange-light);font-weight:600;letter-spacing:2px;}
+.grower-title{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;}
+#contact{background:var(--cream-dark);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-info-items{margin-top:36px;display:flex;flex-direction:column;gap:20px;}
+.contact-info-item{display:flex;gap:16px;align-items:flex-start;}
+.contact-info-icon{width:44px;height:44px;background:var(--green-deep);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.contact-info-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-light);margin-bottom:3px;}
+.contact-info-value{font-size:16px;font-weight:600;color:var(--green-deep);}
+.contact-info-sub{font-size:12px;color:var(--text-light);margin-top:2px;}
+.contact-form-wrapper{background:white;border-radius:20px;padding:40px;box-shadow:var(--shadow);}
+.contact-form-title{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--green-deep);margin-bottom:24px;}
+.contact-form{display:flex;flex-direction:column;gap:14px;}
+.contact-submit{padding:14px;background:var(--green-deep);color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'Noto Sans KR',sans-serif;cursor:pointer;letter-spacing:1px;transition:all 0.2s;margin-top:6px;}
+.contact-submit:hover{background:var(--green-mid);}
+footer{background:var(--green-deep);padding:60px 5vw 0;color:rgba(255,255,255,0.6);}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.footer-logo{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:white;margin-bottom:8px;}
+.footer-tagline{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:2px;}
+.footer-info-item{font-size:13px;margin-bottom:6px;text-align:right;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+.footer-note{font-size:11px;color:var(--orange-gold);}
+.admin-bar{background:#0F2419;padding:14px 5vw;display:flex;align-items:center;justify-content:center;gap:16px;border-top:1px solid rgba(255,255,255,0.06);}
+.admin-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-decoration:none;transition:all 0.2s;}
+.admin-btn:hover{background:rgba(255,255,255,0.15);color:white;}
+.admin-btn.primary{background:var(--orange-gold);border-color:var(--orange-gold);color:white;}
+.admin-btn.primary:hover{background:#BF6800;}
+.admin-label{font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;}
+.loading-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(30,58,47,0.75);align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+.loading-overlay.show{display:flex;}
+.loading-spinner{width:48px;height:48px;border:3px solid rgba(255,255,255,0.2);border-top-color:var(--orange-light);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-text{color:white;font-size:14px;}
+/* 설정 미완료 배너 */
+.setup-banner{background:#FFF3CD;border:1px solid #FBBF24;border-radius:8px;padding:10px 14px;font-size:12px;color:#92400E;margin-bottom:12px;display:none;}
+.setup-banner.show{display:block;}
+@media(max-width:1024px){#home{grid-template-columns:1fr;}.hero-left{min-height:500px;}.orchard-intro{grid-template-columns:1fr;gap:40px;}.seasons-grid{grid-template-columns:1fr 1fr;}.contact-layout{grid-template-columns:1fr;gap:40px;}.grower-card{grid-template-columns:1fr;text-align:center;}.photo-strip{grid-template-columns:repeat(2,1fr);height:320px;}}
+@media(max-width:640px){.nav-links{display:none;}.pamphlet-title{font-size:28px;}.section-title{font-size:28px;}.seasons-grid{grid-template-columns:1fr;}.form-grid-2{grid-template-columns:1fr;}.hero-left,.hero-right{padding:28px 20px;}.photo-strip{height:200px;}}
+</style>
+</head>
+<body>
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">주문을 접수하고 있습니다…</div>
+</div>
+
+<nav id="mainNav">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon">🍊</div>
+    <div class="nav-logo-text">정성가득 대흘귤집<span>Jeju Hwanggeumsang</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">홈</a></li>
+    <li><a href="#orchard">과수원 소개</a></li>
+    <li><a href="#contact">문의하기</a></li>
+    <li><a href="#home" class="nav-cta">지금 주문하기</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-bg-img"><img src="farm_orchard.jpg" alt="대흘귤집 과수원" onerror="this.style.display='none'"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="pamphlet-card">
+      <div class="pamphlet-season-tag">🍊 2026 New Season</div>
+      <div class="pamphlet-title">노지<em>황금향</em><br>직배송</div>
+      <div class="pamphlet-subtitle">Jeju Island · Field-Grown · Direct Delivery</div>
+      <div class="pamphlet-products">
+        <div class="pamphlet-product-item">
+          <div class="product-label"><span class="product-badge badge-premium">상품</span><div><div class="product-name">황금향 5kg</div><div class="product-weight">선별된 프리미엄 사이즈</div></div></div>
+          <div style="text-align:right"><div class="product-price">35,000</div><div class="product-price-sub">원 · 택배포함</div></div>
+        </div>
+        <div class="pamphlet-product-item">
+          <div class="product-label"><span class="product-badge badge-premium">상품</span><div><div class="product-name">황금향 10kg</div><div class="product-weight">선별된 프리미엄 사이즈</div></div></div>
+          <div style="text-align:right"><div class="product-price">50,000</div><div class="product-price-sub">원 · 택배포함</div></div>
+        </div>
+        <div class="pamphlet-product-item">
+          <div class="product-label"><span class="product-badge badge-mid">중상품</span><div><div class="product-name">황금향 10kg</div><div class="product-weight">랜덤 사이즈 혼합 · 실속형</div></div></div>
+          <div style="text-align:right"><div class="product-price">40,000</div><div class="product-price-sub">원 · 택배포함</div></div>
+        </div>
+      </div>
+      <div class="pamphlet-info">
+        <div>
+          <div class="pamphlet-contact-label">주문 · 문의</div>
+          <div class="pamphlet-contact">010-5697-0454</div>
+          <div class="pamphlet-bank">농협 961-12-365618 · 강지애</div>
+        </div>
+        <div>
+          <div class="pamphlet-harvest">Harvested with Love</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px;">제주 조천읍 대흘2리</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="order-header">
+      <div class="order-eyebrow">Online Order</div>
+      <div class="order-title">주문서 작성</div>
+      <div class="order-desc">아래 정보를 입력하시면 입금 확인 후<br>신선하게 발송해드립니다.</div>
+    </div>
+    <div class="setup-banner" id="setupBanner">
+      ⚙️ Google Sheets 연동이 설정되지 않았습니다. 주문이 저장되지 않을 수 있습니다.
+    </div>
+    <form id="orderForm" onsubmit="handleOrder(event)">
+      <div class="product-selector-label">상품 선택</div>
+      <div class="product-selector">
+        <div class="product-card selected" data-price="35000" data-name="상품5" onclick="selectProduct(this)">
+          <div class="product-card-left"><div class="product-card-radio"></div><div><div class="product-card-name">상품 5kg</div><div class="product-card-desc">선별된 프리미엄 사이즈</div></div></div>
+          <div class="product-card-price">35,000원</div>
+        </div>
+        <div class="product-card" data-price="50000" data-name="상품10" onclick="selectProduct(this)">
+          <div class="product-card-left"><div class="product-card-radio"></div><div><div class="product-card-name">상품 10kg</div><div class="product-card-desc">선별된 프리미엄 사이즈</div></div></div>
+          <div class="product-card-price">50,000원</div>
+        </div>
+        <div class="product-card" data-price="40000" data-name="중상품" onclick="selectProduct(this)">
+          <div class="product-card-left"><div class="product-card-radio"></div><div><div class="product-card-name">중상품 10kg</div><div class="product-card-desc">랜덤 사이즈 혼합 · 실속형</div></div></div>
+          <div class="product-card-price">40,000원</div>
+        </div>
+      </div>
+      <div class="qty-row">
+        <div class="qty-label">수량</div>
+        <div class="qty-control">
+          <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-display" id="qtyDisplay">1</div>
+          <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <div style="font-size:12px;color:var(--text-light)">박스</div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">보내는 분 (주문자)</div>
+        <div class="form-grid">
+          <div class="form-grid form-grid-2">
+            <div class="form-field"><label>성명 *</label><input type="text" id="senderName" placeholder="홍길동" required></div>
+            <div class="form-field"><label>연락처 *</label><input type="tel" id="senderPhone" placeholder="010-0000-0000" required oninput="formatPhone(this)"></div>
+          </div>
+          <div class="form-field"><label>주소</label><input type="text" id="senderAddr" value="제주특별자치도 조천읍 대흘2리 306번지"></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">받는 분 (수취인)</div>
+        <button type="button" class="same-addr-btn" onclick="copySender()">✓ 보내는 분과 동일</button>
+        <div class="form-grid">
+          <div class="form-grid form-grid-2">
+            <div class="form-field"><label>성명 *</label><input type="text" id="receiverName" placeholder="김철수" required></div>
+            <div class="form-field"><label>연락처 *</label><input type="tel" id="receiverPhone" placeholder="010-0000-0000" required oninput="formatPhone(this)"></div>
+          </div>
+          <div class="form-field"><label>기타 연락처</label><input type="tel" id="receiverPhone2" placeholder="없으면 비워두세요" oninput="formatPhone(this)"></div>
+          <div class="form-field"><label>주소 *</label><input type="text" id="receiverAddr" placeholder="서울시 강남구 테헤란로 123" required></div>
+          <div class="form-field"><label>상세주소 (동/호수)</label><input type="text" id="receiverAddrDetail" placeholder="○○아파트 101동 1001호"></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-field"><label>배송 메시지 (선택)</label><textarea id="deliveryMsg" placeholder="문 앞에 놓아주세요 / 부재 시 경비실"></textarea></div>
+      </div>
+      <div class="order-total">
+        <div>
+          <div class="order-total-label">결제 금액</div>
+          <div class="order-total-detail" id="totalDetail">상품 5kg × 1박스</div>
+        </div>
+        <div class="order-total-amount" id="totalAmount">35,000원</div>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">주문 접수하기 →</button>
+      <div class="order-notice">입금 확인 후 발송됩니다 · 농협 961-12-365618 강지애<br>문의: 010-5697-0454</div>
+      <div class="success-msg" id="successMsg">
+        <h3>✅ 주문이 접수되었습니다!</h3>
+        <p>농협 961-12-365618 강지애로 입금해주시면<br>확인 후 신선하게 발송해드립니다.</p>
+      </div>
+      <div class="error-msg" id="errorMsg">오류가 발생했습니다. 전화 또는 카카오톡으로 주문해주세요. 📞 010-5697-0454</div>
+    </form>
+  </div>
+</section>
+
+<!-- 사진 스트립 -->
+<div class="photo-strip">
+  <div class="photo-strip-item" style="background:linear-gradient(135deg,#2D5A3D,#1E3A2F);">
+    <img src="farm_tree.jpg" alt="황금향 나무" onerror="this.parentElement.innerHTML='<div class=\'photo-strip-ph\'>🌳</div>'">
+  </div>
+  <div class="photo-strip-item" style="background:linear-gradient(135deg,#D4750A,#F4A130);">
+    <img src="farm_slice.jpg" alt="황금향 과육" onerror="this.parentElement.innerHTML='<div class=\'photo-strip-ph\'>🍊</div>'">
+  </div>
+  <div class="photo-strip-item" style="background:linear-gradient(135deg,#F0E9D8,#FAF6EE);">
+    <img src="farm_box1.jpg" alt="포장 박스" onerror="this.parentElement.innerHTML='<div class=\'photo-strip-ph\'>📦</div>'">
+  </div>
+  <div class="photo-strip-item" style="background:linear-gradient(135deg,#4A7C59,#2D5A3D);">
+    <img src="farm_harvest_hand.jpg" alt="수확 현장" onerror="this.parentElement.innerHTML='<div class=\'photo-strip-ph\'>🌿</div>'">
+  </div>
+</div>
+
+<!-- 과수원 소개 -->
+<section id="orchard">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="orchard-intro">
+      <div>
+        <div class="section-eyebrow">About Our Farm</div>
+        <div class="section-title">제주 노지에서<br>키운 황금향</div>
+        <div class="section-desc">제주특별자치도 조천읍 대흘리, 한라산 자락의 깨끗한 바람과 화산토가 만들어낸 특별한 땅. 이곳에서 정성껏 키운 노지황금향입니다.</div>
+        <div class="quality-points">
+          <div class="quality-item"><div class="quality-icon">☀️</div><div><div class="quality-title">노지 직사광 수확</div><div class="quality-desc">온실이 아닌 제주의 바람과 햇살 아래서 자라 껍질이 얇고 당도가 높습니다.</div></div></div>
+          <div class="quality-item"><div class="quality-icon">🌋</div><div><div class="quality-title">제주 화산토 재배</div><div class="quality-desc">화산 현무암 토양의 미네랄이 황금향의 깊은 풍미를 만들어냅니다.</div></div></div>
+          <div class="quality-item"><div class="quality-icon">📦</div><div><div class="quality-title">수확 당일 선별 발송</div><div class="quality-desc">수확 직후 손으로 선별하여 신선한 상태로 바로 포장·발송합니다.</div></div></div>
+        </div>
+      </div>
+      <div class="orchard-intro-image">
+        <img src="farm_owner.jpg" alt="수확 현장" onerror="this.parentElement.innerHTML='🍊'">
+      </div>
+    </div>
+    <div style="margin-bottom:24px;"><div class="section-eyebrow">Four Seasons</div><div class="section-title" style="font-size:32px;">귤 과수원의 사계절</div></div>
+    <div class="seasons-grid">
+      <div class="season-card"><div class="season-image" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9);"><span class="season-season-badge badge-spring">Spring</span><div class="season-ph">🌸</div></div><div class="season-content"><div class="season-month">3월 – 5월</div><div class="season-title">꽃 피는 계절</div><div class="season-desc">과수원 가득 하얀 귤꽃이 피어납니다. 달콤한 꽃향기가 온 밭에 퍼지고 가을 황금향으로 자라날 준비를 합니다.</div></div></div>
+      <div class="season-card"><div class="season-image" style="background:linear-gradient(135deg,#E0F7E9,#A5D6A7);"><span class="season-season-badge badge-summer">Summer</span><div class="season-ph">🌿</div></div><div class="season-content"><div class="season-month">6월 – 9월</div><div class="season-title">초록 열매의 성장</div><div class="season-desc">제주의 뜨거운 햇살 아래 열매가 쑥쑥 자랍니다. 충분한 영양과 수분 관리가 맛을 결정합니다.</div></div></div>
+      <div class="season-card"><div class="season-image" style="background:linear-gradient(135deg,#FFF3E0,#FFE082);"><span class="season-season-badge badge-autumn">Autumn</span><div class="season-ph">🍂</div></div><div class="season-content"><div class="season-month">10월 – 11월</div><div class="season-title">황금빛 익어가는 가을</div><div class="season-desc">초록빛 열매가 서서히 황금빛으로 물듭니다. 일교차가 커질수록 당도가 올라가는 설렘의 시간.</div></div></div>
+      <div class="season-card"><div class="season-image" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB);"><span class="season-season-badge badge-winter">Winter</span><div class="season-ph">📦</div></div><div class="season-content"><div class="season-month">11월 – 1월</div><div class="season-title">수확의 계절</div><div class="season-desc">1년의 기다림 끝에 수확이 시작됩니다. 가족이 함께 손으로 직접 따고 선별하여 전국으로 보냅니다.</div></div></div>
+    </div>
+    <div class="grower-card">
+      <div class="grower-photo">
+        <img src="farm_owner.jpg" alt="강지애 대표" onerror="this.parentElement.innerHTML='🧑‍🌾'">
+      </div>
+      <div>
+        <div class="grower-quote">"황금향 한 알에 제주의 햇살과 바람,<br>그리고 우리 가족의 1년이 담겨 있습니다.<br>받으시는 분들이 그 마음을 느끼셨으면 해요."</div>
+        <div class="grower-name">강지애</div>
+        <div class="grower-title">정성가득 대흘귤집 · 제주특별자치도 조천읍 대흘2리 306번지</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 문의 -->
+<section id="contact">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="contact-layout">
+      <div>
+        <div class="section-eyebrow">Get in Touch</div>
+        <div class="section-title" style="font-size:36px;">궁금하신 점<br>언제든 연락주세요</div>
+        <div class="section-desc">주문 방법, 배송 일정, 재고 여부 등 무엇이든 편하게 물어보세요.</div>
+        <div class="contact-info-items">
+          <div class="contact-info-item"><div class="contact-info-icon">📱</div><div><div class="contact-info-label">전화 / 카카오톡</div><div class="contact-info-value">010-5697-0454</div><div class="contact-info-sub">강지애 (카카오톡 문자 권장)</div></div></div>
+          <div class="contact-info-item"><div class="contact-info-icon">🏦</div><div><div class="contact-info-label">입금 계좌</div><div class="contact-info-value">농협 961-12-365618</div><div class="contact-info-sub">예금주: 강지애</div></div></div>
+          <div class="contact-info-item"><div class="contact-info-icon">📍</div><div><div class="contact-info-label">농장 주소</div><div class="contact-info-value" style="font-size:14px;">제주특별자치도 조천읍 대흘2리 306번지</div><div class="contact-info-sub">방문 전 연락 부탁드립니다</div></div></div>
+          <div class="contact-info-item"><div class="contact-info-icon">🚚</div><div><div class="contact-info-label">택배사</div><div class="contact-info-value">CJ대한통운</div><div class="contact-info-sub">입금 확인 후 발송 · 운송장 번호 별도 안내</div></div></div>
+        </div>
+      </div>
+      <div class="contact-form-wrapper">
+        <div class="contact-form-title">문의 남기기</div>
+        <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
+          <div class="form-grid form-grid-2">
+            <div class="form-field"><label>성함</label><input type="text" id="contactName" placeholder="홍길동" required></div>
+            <div class="form-field"><label>연락처</label><input type="tel" id="contactPhone" placeholder="010-0000-0000" oninput="formatPhone(this)" required></div>
+          </div>
+          <div class="form-field"><label>문의 유형</label>
+            <select id="contactType">
+              <option>주문 방법 문의</option>
+              <option>배송 일정 문의</option>
+              <option>재고 및 수량 문의</option>
+              <option>단체 주문 (10박스 이상)</option>
+              <option>기타 문의</option>
+            </select>
+          </div>
+          <div class="form-field"><label>문의 내용</label><textarea id="contactMsg" style="min-height:100px;" required placeholder="궁금하신 점을 자유롭게 적어주세요."></textarea></div>
+          <button type="submit" class="contact-submit">문의 보내기 →</button>
+          <div class="success-msg" id="contactSuccessMsg"><h3>✅ 문의가 접수되었습니다!</h3><p>빠른 시간 내에 연락드리겠습니다.</p></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="footer-top">
+      <div><div class="footer-logo">🍊 정성가득 대흘귤집</div><div class="footer-tagline">Jeju Island · Hwanggeumsang · Direct from Farm</div></div>
+      <div>
+        <div class="footer-info-item">📱 010-5697-0454 (강지애)</div>
+        <div class="footer-info-item">🏦 농협 961-12-365618 · 강지애</div>
+        <div class="footer-info-item">📍 제주특별자치도 조천읍 대흘2리 306번지</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 정성가득 대흘귤집. All rights reserved.</div>
+      <div class="footer-note">🍊 제주 노지황금향 · 11월 중순 출하</div>
+    </div>
+  </div>
+</footer>
+
+<!-- 관리자 바 -->
+<div class="admin-bar">
+  <span class="admin-label">🔒 관리자 전용</span>
+  <a href="admin_system.html" class="admin-btn primary">📊 주문 관리 시스템 열기</a>
+  <span style="color:rgba(255,255,255,0.15);font-size:18px;">|</span>
+  <span style="font-size:11px;color:rgba(255,255,255,0.25);">강지애 운영자 전용</span>
+</div>
+
+<script>
+// ================================================================
+// ▼▼▼ 설정: Google Apps Script 배포 URL을 여기에 붙여넣기 ▼▼▼
+// ================================================================
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPhcfm3QqV7sm2UdRiYaILiZ2I7iyYArZDRBsn7qT9YNKbXRyEhov0LcCbhS9hJhorRA/exec';
+// ================================================================
+// ▲▲▲ 설정 끝 ▲▲▲
+// ================================================================
+
+let selectedPrice = 35000, selectedName = '상품5', qty = 1;
+
+// URL 설정 여부 확인
+window.addEventListener('load', function() {
+  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    document.getElementById('setupBanner').classList.add('show');
+  }
+});
+
+function selectProduct(card) {
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedPrice = parseInt(card.dataset.price);
+  selectedName  = card.dataset.name;
+  updateTotal();
+}
+
+function changeQty(d) {
+  qty = Math.max(1, Math.min(99, qty + d));
+  document.getElementById('qtyDisplay').textContent = qty;
+  updateTotal();
+}
+
+function updateTotal() {
+  const t = selectedPrice * qty;
+  const m = { '상품5': '상품 5kg', '상품10': '상품 10kg', '중상품': '중상품 10kg' };
+  document.getElementById('totalAmount').textContent = t.toLocaleString('ko-KR') + '원';
+  document.getElementById('totalDetail').textContent = m[selectedName] + ' × ' + qty + '박스';
+}
+
+function formatPhone(input) {
+  let v = input.value.replace(/\D/g, '');
+  if (v.length <= 3)       input.value = v;
+  else if (v.length <= 7)  input.value = v.slice(0,3) + '-' + v.slice(3);
+  else                     input.value = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+}
+
+function copySender() {
+  document.getElementById('receiverName').value  = document.getElementById('senderName').value;
+  document.getElementById('receiverPhone').value = document.getElementById('senderPhone').value;
+  document.getElementById('receiverAddr').value  = document.getElementById('senderAddr').value;
+}
+
+async function handleOrder(e) {
+  e.preventDefault();
+  const detail  = document.getElementById('receiverAddrDetail').value;
+  const fullAddr = document.getElementById('receiverAddr').value + (detail ? ' ' + detail : '');
+  const now = new Date();
+
+  const data = {
+    action:          'order',
+    주문일자:         `${now.getMonth()+1}월${now.getDate()}일`,
+    보내는분성명:     document.getElementById('senderName').value,
+    보내는분전화번호: document.getElementById('senderPhone').value,
+    보내는분주소:     document.getElementById('senderAddr').value,
+    받는분성명:       document.getElementById('receiverName').value,
+    받는분전화번호:   document.getElementById('receiverPhone').value,
+    받는분기타연락처: document.getElementById('receiverPhone2').value,
+    받는분주소:       fullAddr,
+    품목명:           selectedName,
+    박스수량:         qty,
+    배송메시지:       document.getElementById('deliveryMsg').value,
+    단가:             selectedPrice,
+    합계:             selectedPrice * qty,
+    주문채널:         '웹주문',
+    접수시각:         now.toISOString()
+  };
+
+  const submitBtn = document.getElementById('submitBtn');
+  const loadingEl = document.getElementById('loadingOverlay');
+  submitBtn.disabled = true;
+  loadingEl.classList.add('show');
+
+  try {
+    if (APPS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } else {
+      // URL 미설정 시 1초 지연 후 성공 처리 (개발/테스트용)
+      await new Promise(r => setTimeout(r, 1000));
+    }
+
+    loadingEl.classList.remove('show');
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('errorMsg').classList.remove('show');
+    document.getElementById('orderForm').reset();
+
+    // 폼 초기화
+    document.getElementById('senderAddr').value = '제주특별자치도 조천읍 대흘2리 306번지';
+    qty = 1; selectedPrice = 35000; selectedName = '상품5';
+    document.getElementById('qtyDisplay').textContent = '1';
+    document.querySelectorAll('.product-card').forEach((c, i) => c.classList.toggle('selected', i === 0));
+    updateTotal();
+
+  } catch (err) {
+    loadingEl.classList.remove('show');
+    document.getElementById('errorMsg').classList.add('show');
+  } finally {
+    submitBtn.disabled = false;
+  }
+}
+
+async function handleContact(e) {
+  e.preventDefault();
+  const data = {
+    action:   'contact',
+    성함:     document.getElementById('contactName').value,
+    연락처:   document.getElementById('contactPhone').value,
+    문의유형: document.getElementById('contactType').value,
+    문의내용: document.getElementById('contactMsg').value
+  };
+
+  try {
+    if (APPS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    }
+    document.getElementById('contactSuccessMsg').classList.add('show');
+    document.getElementById('contactForm').reset();
+  } catch(err) {
+    alert('문의 전송 중 오류가 발생했습니다. 전화로 연락주세요. 010-5697-0454');
+  }
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', scrollY > 20);
+});
+
+updateTotal();
+</script>
+</body>
+</html>
